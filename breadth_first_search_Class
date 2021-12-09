@@ -1,0 +1,48 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package bfs;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BreadthFirstSearch {
+    Node startNode;
+    Node goalNode;
+
+    public BreadthFirstSearch(Node start, Node goal) {
+        this.startNode = start;
+        this.goalNode = goal;
+    }
+
+    public boolean compute() {
+        if (this.startNode.equals(this.goalNode)) {
+            System.out.println("Goal node found");
+            System.out.println(this.startNode);
+            return true;
+        } else {
+            Queue<Node> queue = new LinkedList();
+            ArrayList<Node> explored = new ArrayList();
+            queue.add(this.startNode);
+            explored.add(this.startNode);
+
+            while(!queue.isEmpty()) {
+                Node current = (Node)queue.remove();
+                if (current.equals(this.goalNode)) {
+                    return true;
+                }
+
+                if (current.getChildren().isEmpty()) {
+                    return false;
+                }
+
+                queue.add(current);
+            }
+
+            return false;
+        }
+    }
+}
